@@ -4,7 +4,7 @@ Independent rebuild of the Glenride HQ document library (originally a
 private Muse fullstack artifact, slug `glenride-hq`). The Muse original
 stays live and untouched; this is a rebuild, not a migration.
 
-- **Live:** https://hq.dvaughnhouse.org (login page — password-gated)
+- **Live:** https://hq.dvaughnhouse.com (login page — password-gated)
 - **Frontend:** Cloudflare Pages project `glenride-hq` (static SPA in `public/`)
 - **API:** Cloudflare Worker `glenride-hq-api` — https://glenride-hq-api.mwszghdkkf.workers.dev
 - **Data:** D1 database `glenride-hq` (`0d78cc19-3b11-4f39-805e-c061524cab2f`),
@@ -68,6 +68,6 @@ python3 ~/workspace/custom-connectors/custom.legacy-cloudflare/bin/pages_wrangle
   --project glenride-hq --dir <repo>/public
 ```
 
-The custom domain `hq.dvaughnhouse.org` is attached to the Pages
+The custom domain `hq.dvaughnhouse.com` is attached to the Pages
 project; DNS is a proxied CNAME to `glenride-hq.pages.dev` in the
-dvaughnhouse.org zone.
+dvaughnhouse.com zone.

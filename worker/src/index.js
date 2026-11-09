@@ -6,7 +6,7 @@
 // never in this repo, never in D1, never in a file.
 
 const ALLOWED_ORIGINS = new Set([
-  "https://hq.dvaughnhouse.org",
+  "https://hq.dvaughnhouse.com",
   "https://glenride-hq.pages.dev",
 ]);
 
