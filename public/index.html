@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glenride HQ</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="login-view" class="center hidden">
+  <div class="login-card">
+    <div class="brand">GLENRIDE</div>
+    <h1>Glenride HQ</h1>
+    <p class="muted">Internal documents. Enter the HQ password to continue.</p>
+    <form id="login-form">
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password" autofocus>
+      <button type="submit">Sign in</button>
+    </form>
+    <p id="login-error" class="error hidden"></p>
+  </div>
+</div>
+
+<div id="app-view" class="hidden">
+  <header>
+    <div class="brand">GLENRIDE <span>HQ</span></div>
+    <input id="search" type="search" placeholder="Search titles, summaries, text…">
+    <button id="new-doc-btn" class="btn">+ New document</button>
+    <button id="logout-btn" class="btn ghost">Sign out</button>
+  </header>
+  <div class="layout">
+    <aside id="binders"></aside>
+    <main>
+      <div id="doc-list"></div>
+      <article id="reader" class="hidden">
+        <button id="back-btn" class="btn ghost">← All documents</button>
+        <div id="reader-body"></div>
+      </article>
+      <div id="editor" class="hidden">
+        <h2 id="editor-title">New document</h2>
+        <label>Title <input id="ed-title"></label>
+        <label>Binder
+          <select id="ed-binder">
+            <option value="structure">structure</option>
+            <option value="operations">operations</option>
+            <option value="council">council</option>
+            <option value="commercial">commercial</option>
+            <option value="brand">brand</option>
+            <option value="general">general</option>
+          </select>
+        </label>
+        <label>Status <input id="ed-status" placeholder="e.g. Draft v0.1"></label>
+        <label>Summary <input id="ed-summary"></label>
+        <label>Content (Markdown) <textarea id="ed-content" rows="18"></textarea></label>
+        <div class="row">
+          <button id="save-doc-btn" class="btn">Save</button>
+          <button id="cancel-edit-btn" class="btn ghost">Cancel</button>
+          <button id="delete-doc-btn" class="btn danger hidden">Delete</button>
+        </div>
+        <p id="editor-error" class="error hidden"></p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

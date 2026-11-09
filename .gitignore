@@ -1,0 +1,8 @@
+.wrangler/
+node_modules/
+# Generated chunked-asset SQL is large and reproducible from the generator
+# script + the workspace source file; keep it out of the repo.
+scripts/seed-*-chunks.sql
+# Never commit secrets or env files.
+.env
+.env.*

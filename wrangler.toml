@@ -1,0 +1,13 @@
+name = "glenride-hq-api"
+main = "worker/src/index.js"
+compatibility_date = "2026-10-01"
+# Keep the workers.dev URL alive: the Pages SPA calls this Worker directly.
+# (Adding routes would switch workers.dev off, so no routes block here.)
+workers_dev = true
+
+[[d1_databases]]
+binding = "HQ_DB"
+database_name = "glenride-hq"
+# SHARED database with the Glenride System Map app (account hit the
+# 10-database limit). This app uses ONLY hq_* tables; never touch sysmap_*.
+database_id = "0d78cc19-3b11-4f39-805e-c061524cab2f"

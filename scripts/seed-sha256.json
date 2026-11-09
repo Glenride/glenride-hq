@@ -1,0 +1,183 @@
+{
+  "documents": [
+    {
+      "id": "operating-structure",
+      "title": "Operating Structure Concept",
+      "kind": "markdown",
+      "content_chars": 8582,
+      "content_sha256": "434dacd2e3dead849b83d5132e910c63433a26d1d635d9b6baa0b4bb7d7b1d8a",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "business-system-map",
+      "title": "Business Structure & Shielding",
+      "kind": "markdown",
+      "content_chars": 5829,
+      "content_sha256": "6557b41fc03fdaad9a71e21cfe5266b4576b6a85290cc96177353575865c15cc",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "wyoming-checklist",
+      "title": "Wyoming LLC Formation Checklist",
+      "kind": "markdown",
+      "content_chars": 4328,
+      "content_sha256": "b5f40fccbb84acf15b05df6494686b5f76e025e8a467fb6724dce1a90613449d",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-outline",
+      "title": "Research SOP Outline",
+      "kind": "markdown",
+      "content_chars": 8961,
+      "content_sha256": "b1960289e1864f4a1e7ded009c95192716faa69bd8b313a2246c68a9683ead62",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-index",
+      "title": "SOP Draft Index",
+      "kind": "markdown",
+      "content_chars": 2450,
+      "content_sha256": "2a10d8d2716cf60756a0fdd3c709e2c1335ffa2b8802fdeb23e781478008a841",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-001",
+      "title": "SOP-001 \u00b7 Study Approval",
+      "kind": "markdown",
+      "content_chars": 2330,
+      "content_sha256": "3636371233e7ccba56cc5f0e22ec6036d5bdd93b5cf78d674c0c660d16e4d93b",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-002",
+      "title": "SOP-002 \u00b7 Research Records",
+      "kind": "markdown",
+      "content_chars": 2626,
+      "content_sha256": "b58346d54b47b0a41ee63768fd16dada7dac0893248aca98b4c5f1f3caacdeb1",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-003",
+      "title": "SOP-003 \u00b7 Conflicts of Interest",
+      "kind": "markdown",
+      "content_chars": 2399,
+      "content_sha256": "e4e4b3d8161a332082a321a4a275376f57d13e24234f83e3d5d91ca67ae2d533",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-004",
+      "title": "SOP-004 \u00b7 Study Budget Tracking",
+      "kind": "markdown",
+      "content_chars": 2495,
+      "content_sha256": "990b24115a496d98b297f8546783fea27d107caa27c8f0faacd5c9d3cea32ca6",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "council-charter",
+      "title": "Council Charter",
+      "kind": "markdown",
+      "content_chars": 3107,
+      "content_sha256": "3f9ed5661d0230cea0b428468bd70ab20d9535b18b671114b35b7647d79ea22d",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "council-prospectus",
+      "title": "Council Prospectus",
+      "kind": "pdf",
+      "content_chars": 0,
+      "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "asset": "council-prospectus",
+      "asset_carried": true
+    },
+    {
+      "id": "commercial-plan",
+      "title": "App Store Commercial Plan",
+      "kind": "markdown",
+      "content_chars": 7272,
+      "content_sha256": "e250cb4006a9d58d7cc7e292bb30b006ba960ac902c24f276d1dfbe4dce62b32",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "commercial-inventory",
+      "title": "App Store Inventory",
+      "kind": "markdown",
+      "content_chars": 9760,
+      "content_sha256": "cff34e6b50539a8c79a542be401d42b7f0288b74c6b7b6938ae849157736ac3b",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "commercial-copy",
+      "title": "App Store Content",
+      "kind": "markdown",
+      "content_chars": 2993,
+      "content_sha256": "ae4c2bb7d8c19028ee8f541cdf6eec05ded20950ca6394d036534913563da6a6",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "cloudflare-staging",
+      "title": "Cloudflare Staging Map",
+      "kind": "markdown",
+      "content_chars": 4095,
+      "content_sha256": "6428f1a9f37d71f292593df808c0d4ac6fb6f283a04c1f9835a464a12e601b67",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "launch-transcript",
+      "title": "Glenride Launch Transcript",
+      "kind": "docx",
+      "content_chars": 21355,
+      "content_sha256": "93629641ae0fb88d5479ba854645524a693f04e9da507d67c44545c12176a552",
+      "asset": "launch-docx",
+      "asset_carried": false
+    },
+    {
+      "id": "thinktank-deck",
+      "title": "Glenride & ThinkTank OS Deck",
+      "kind": "pptx",
+      "content_chars": 139,
+      "content_sha256": "8084676fa31a4e6664bff8912b4107c6765aa141fe51da745cb8c0420bba0a89",
+      "asset": "thinktank-pptx",
+      "asset_carried": false
+    },
+    {
+      "id": "narrative-prospectus",
+      "title": "Narrative Series Prospectus",
+      "kind": "markdown",
+      "content_chars": 10745,
+      "content_sha256": "c39926197c3da876a78ce3abc57f972e4744d64d81112eacaa8e398ab2d9a7b5",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "narrative-sources",
+      "title": "Narrative Series Source Map",
+      "kind": "markdown",
+      "content_chars": 32221,
+      "content_sha256": "bf44c5694cac110f5887a8eb54a96497fe8dde090f26d03769a1167dbd42ac01",
+      "asset": null,
+      "asset_carried": false
+    }
+  ],
+  "missing_assets": [],
+  "asset_files": {
+    "council-prospectus": {
+      "file": "glenride-council-prospectus.pdf",
+      "bytes": 70358,
+      "sha256": "1fd7bc5c85ccf6ef096dca63e0afbbb9f311c381fb75f9dd6e1dabbdccd0ef60"
+    }
+  }
+}
