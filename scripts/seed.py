@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Seed Glenride HQ D1 from the Muse backup snapshot plus later additions.
+"""Seed Glenride HQ D1 from the vendored Nov 8 snapshot plus later additions.
 
-Reads ~/workspace/your_files/muse-backup-2026-11-08/glenride-hq/data-snapshot-listlibrary.json
-(the Nov 8, 2026 snapshot, 19 documents) and merges the repo-local
+Reads scripts/snapshot-2026-11-08.json (the Nov 8, 2026 Muse backup
+snapshot, 19 documents, vendored byte-exact into this repo so the seed
+never depends on a file outside it) and merges the repo-local
 additions snapshot(s) listed in ADDITIONS (documents added to the live
 library after Nov 8). Emits:
   - seed.sql  (INSERTs into hq_documents / hq_assets, SQL-escaped)
@@ -21,13 +22,21 @@ the doc is listed as missing-asset in the report.
 
 Usage:
   python3 scripts/seed.py [--asset council-prospectus=/path/to.pdf ...]
+  python3 scripts/seed.py --snapshot /path/to/other-snapshot.json ...
+
+The vendored snapshot is the only default input. There is deliberately
+no silent fallback to the external backup path: a fallback would
+reintroduce the outside-repo dependency and mask a missing vendored
+file. To regenerate from a different snapshot, pass --snapshot
+explicitly.
 """
 import argparse, base64, hashlib, json, mimetypes, os, sys
 
-SNAPSHOT = os.path.expanduser(
-    "~/workspace/your_files/muse-backup-2026-11-08/glenride-hq/data-snapshot-listlibrary.json")
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(OUT_DIR)
+# Vendored Nov 8, 2026 snapshot — the seed's base input. Byte-exact copy
+# of the Muse backup snapshot; sha256 3ad7677be091ccc18cafc568996cda303e461cfb41f3f0f07e6608cf5674a85b.
+SNAPSHOT = os.path.join(OUT_DIR, "snapshot-2026-11-08.json")
 # Repo-local additions snapshots, merged after the Nov 8 snapshot in
 # listed order. Each file has the same {"documents": [...]} shape.
 ADDITIONS = [
@@ -45,13 +54,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--asset", action="append", default=[],
                     help="doc-id=/path/to/file (repeatable)")
+    ap.add_argument("--snapshot", default=SNAPSHOT,
+                    help="base snapshot JSON (default: vendored scripts/snapshot-2026-11-08.json)")
     args = ap.parse_args()
     assets = {}
     for a in args.asset:
         doc_id, _, path = a.partition("=")
         assets[doc_id] = os.path.expanduser(path)
 
-    with open(SNAPSHOT, encoding="utf-8") as f:
+    with open(os.path.expanduser(args.snapshot), encoding="utf-8") as f:
         data = json.load(f)
     docs = data["documents"]
     seen = {d["id"] for d in docs}
