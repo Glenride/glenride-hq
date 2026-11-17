@@ -18,7 +18,12 @@ seed.sql by hand; it is generated.
 Binary assets: pass --asset <doc-id>=<path> to embed a file as base64 in
 hq_assets and link it from the document row. If no --asset is given for a
 binary doc, the row is seeded with its summary and asset_* left NULL, and
-the doc is listed as missing-asset in the report.
+the doc is listed as missing-asset in the report. One asset has a
+vendored default: council-prospectus resolves to
+scripts/assets/glenride-council-prospectus.pdf unless --asset overrides
+it. The large deck (thinktank-pptx) is NEVER embedded here — D1 rejects
+multi-MB statements — it is seeded separately by seed-large-asset.py
+from its vendored copy in scripts/assets/.
 
 Usage:
   python3 scripts/seed.py [--asset council-prospectus=/path/to.pdf ...]
@@ -42,6 +47,14 @@ SNAPSHOT = os.path.join(OUT_DIR, "snapshot-2026-11-08.json")
 ADDITIONS = [
     os.path.join(OUT_DIR, "snapshot-sop-attestation-2026-11-17.json"),
 ]
+# Vendored binary assets, keyed by document id. An explicit --asset flag
+# always wins over a default. Only small assets belong here: the large
+# deck is seeded by seed-large-asset.py, never by this script.
+# council-prospectus PDF sha256:
+# 1fd7bc5c85ccf6ef096dca63e0afbbb9f311c381fb75f9dd6e1dabbdccd0ef60.
+DEFAULT_ASSETS = {
+    "council-prospectus": os.path.join(OUT_DIR, "assets", "glenride-council-prospectus.pdf"),
+}
 
 
 def sql_str(v):
@@ -89,7 +102,7 @@ def main():
         asset_name = None
         asset_mime = None
         if asset_id:
-            path = assets.get(d["id"])
+            path = assets.get(d["id"]) or DEFAULT_ASSETS.get(d["id"])
             if path and os.path.exists(path):
                 with open(path, "rb") as fh:
                     raw = fh.read()

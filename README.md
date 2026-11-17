@@ -41,7 +41,8 @@ When documents are added to the live library, add them to an additions
 snapshot in `scripts/` and list it in `seed.py`'s `ADDITIONS` — a re-seed
 deletes every document the snapshots do not contain.
 Two binary assets are stored in D1 and served auth-gated via
-`GET /api/assets/:id`:
+`GET /api/assets/:id`. Both are vendored byte-exact in `scripts/assets/`,
+so a re-seed needs nothing from outside the repo:
 
 - `council-prospectus` — Glenride Council Prospectus PDF (70,358 B, inline)
 - `thinktank-pptx` — Glenride & ThinkTank OS deck pptx (6,250,551 B,
@@ -61,18 +62,23 @@ Two binary assets are stored in D1 and served auth-gated via
 - `scripts/snapshot-sop-attestation-2026-11-17.json` — additions snapshot:
   the 9 attestation SOP documents, exported byte-exact from live D1
 - `scripts/seed-large-asset.py` — generates chunked seed SQL for a large binary
+- `scripts/assets/` — vendored binary assets (prospectus PDF, deck pptx),
+  byte-exact; the seed scripts use these by default
 
 ## Re-seed (fresh database)
 
+Everything the re-seed needs lives in this repo — no outside files:
+
 ```
 wrangler d1 migrations apply glenride-hq --remote
-python3 scripts/seed.py --asset council-prospectus=<path to prospectus pdf>
+python3 scripts/seed.py
 wrangler d1 execute glenride-hq --remote --file scripts/seed.sql
-python3 scripts/seed-large-asset.py thinktank-pptx <path to deck pptx> \
-  application/vnd.openxmlformats-officedocument.presentationml.presentation \
-  glenride-and-thinktank-os.pptx
+python3 scripts/seed-large-asset.py thinktank-pptx
 wrangler d1 execute glenride-hq --remote --file scripts/seed-thinktank-pptx-chunks.sql
 ```
+
+Explicit overrides still work: `seed.py --asset council-prospectus=/path/to.pdf`
+and `seed-large-asset.py thinktank-pptx /path/to.pptx <mime> [name]`.
 
 ## Deploy
 
