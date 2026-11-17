@@ -175,8 +175,8 @@
       "id": "sop-attestation-index",
       "title": "Attestation SOP Series \u2014 Index",
       "kind": "markdown",
-      "content_chars": 3550,
-      "content_sha256": "e4b3613bbb728e9929a923ef16cd9e773b7ec800a1eccbd9ce84d82737fe71a7",
+      "content_chars": 4627,
+      "content_sha256": "f8986fdf3fa4fa86e254b0f635e6834e64c083c1d9176715475fab8b06b6d086",
       "asset": null,
       "asset_carried": false
     },
@@ -184,8 +184,8 @@
       "id": "sop-attestation-auto-monday",
       "title": "SOP \u2014 Automated Monday Digest Attestation",
       "kind": "markdown",
-      "content_chars": 6323,
-      "content_sha256": "d9b009e90bca0f08e3f8aa7a4cafd71920e4fc84cdc2c6013fe2419f74afb181",
+      "content_chars": 8481,
+      "content_sha256": "ec0238be2b909987347d9954fa28241c0888ead769f36e6581bc5049c1119ad9",
       "asset": null,
       "asset_carried": false
     },
@@ -193,8 +193,8 @@
       "id": "sop-attestation-button",
       "title": "SOP \u2014 One-Click Button Attestation",
       "kind": "markdown",
-      "content_chars": 4047,
-      "content_sha256": "5b6994d52a995f497d99a9b1f8eb198c0a02dea29326070559e2877ab908fdb1",
+      "content_chars": 5096,
+      "content_sha256": "a3ed8f6d808f76a88ba9659bd6f41d56a4e43c2aeb6d6a95d924cc172d58be25",
       "asset": null,
       "asset_carried": false
     },
@@ -202,8 +202,8 @@
       "id": "sop-attestation-held-items",
       "title": "SOP \u2014 Held Items and the 3-Run Waiting Rule",
       "kind": "markdown",
-      "content_chars": 4221,
-      "content_sha256": "831437f2931f136c701574cc7a78ecee0a081551258f524e828e8d0578a9a3e1",
+      "content_chars": 5525,
+      "content_sha256": "073484abb9419927bae9968d0ce901a14b8854d24403cd7d30d4b5df1fc769c1",
       "asset": null,
       "asset_carried": false
     },
@@ -211,8 +211,8 @@
       "id": "sop-attestation-challenge-revoke",
       "title": "SOP \u2014 Challenge and Revocation",
       "kind": "markdown",
-      "content_chars": 6009,
-      "content_sha256": "d9aefcf0a5ac29372590cadd16537e910ebfb3233448ece25371b6f7c1c8896e",
+      "content_chars": 7005,
+      "content_sha256": "551a270a70d780f6fe33e65103a73578d2dd21300cfd776a70c08e41ec808be4",
       "asset": null,
       "asset_carried": false
     },
@@ -220,8 +220,8 @@
       "id": "sop-attestation-corrections",
       "title": "SOP \u2014 Corrections and Superseded Versions",
       "kind": "markdown",
-      "content_chars": 4101,
-      "content_sha256": "c6b06aeefab7d7e783129c98108357d2203ad635743f7c675ae1532f45e2c510",
+      "content_chars": 5702,
+      "content_sha256": "df25c946c70b491ee9191bc8cbfdc7a79793b82e0bbb3f160e6b80e9ca47ec89",
       "asset": null,
       "asset_carried": false
     },
@@ -229,8 +229,8 @@
       "id": "sop-attestation-chain-verify",
       "title": "SOP \u2014 Issuance Chain Verification and Anchoring",
       "kind": "markdown",
-      "content_chars": 4531,
-      "content_sha256": "bc161f9ed2c47e585b6cd8bd24f2686f1b0da991386a088df4f184cd1c2e9f8e",
+      "content_chars": 7500,
+      "content_sha256": "530ed6879c3814ff31106642865d2f63b424d4eb4dbd28ae09c4d945f48e3fbf",
       "asset": null,
       "asset_carried": false
     },
@@ -238,8 +238,8 @@
       "id": "sop-attestation-key-mgmt",
       "title": "SOP \u2014 Key Management and Signing Operations",
       "kind": "markdown",
-      "content_chars": 4355,
-      "content_sha256": "9869c894ac0a12bb7a7f28cab6f227902c81cc533304427582429e8716d45732",
+      "content_chars": 8140,
+      "content_sha256": "241ebefc449f5ac8e9c2247421a96d28c5202dc0e24f7d9e57a164c614f8cef3",
       "asset": null,
       "asset_carried": false
     },
@@ -247,8 +247,8 @@
       "id": "sop-attestation-backfill",
       "title": "SOP \u2014 Backfill of Past Editions",
       "kind": "markdown",
-      "content_chars": 4755,
-      "content_sha256": "b9143af48c39461c023d8f55ab963b7947650bfc40eddfbc953236b8a89a1a30",
+      "content_chars": 5587,
+      "content_sha256": "cd1f656eca4fbae00a06341f57047420fac1ca7b2bbe8bfab3739fd94bf613b3",
       "asset": null,
       "asset_carried": false
     }
