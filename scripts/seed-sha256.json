@@ -170,6 +170,87 @@
       "content_sha256": "bf44c5694cac110f5887a8eb54a96497fe8dde090f26d03769a1167dbd42ac01",
       "asset": null,
       "asset_carried": false
+    },
+    {
+      "id": "sop-attestation-index",
+      "title": "Attestation SOP Series \u2014 Index",
+      "kind": "markdown",
+      "content_chars": 3550,
+      "content_sha256": "e4b3613bbb728e9929a923ef16cd9e773b7ec800a1eccbd9ce84d82737fe71a7",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-attestation-auto-monday",
+      "title": "SOP \u2014 Automated Monday Digest Attestation",
+      "kind": "markdown",
+      "content_chars": 6323,
+      "content_sha256": "d9b009e90bca0f08e3f8aa7a4cafd71920e4fc84cdc2c6013fe2419f74afb181",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-attestation-button",
+      "title": "SOP \u2014 One-Click Button Attestation",
+      "kind": "markdown",
+      "content_chars": 4047,
+      "content_sha256": "5b6994d52a995f497d99a9b1f8eb198c0a02dea29326070559e2877ab908fdb1",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-attestation-held-items",
+      "title": "SOP \u2014 Held Items and the 3-Run Waiting Rule",
+      "kind": "markdown",
+      "content_chars": 4221,
+      "content_sha256": "831437f2931f136c701574cc7a78ecee0a081551258f524e828e8d0578a9a3e1",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-attestation-challenge-revoke",
+      "title": "SOP \u2014 Challenge and Revocation",
+      "kind": "markdown",
+      "content_chars": 6009,
+      "content_sha256": "d9aefcf0a5ac29372590cadd16537e910ebfb3233448ece25371b6f7c1c8896e",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-attestation-corrections",
+      "title": "SOP \u2014 Corrections and Superseded Versions",
+      "kind": "markdown",
+      "content_chars": 4101,
+      "content_sha256": "c6b06aeefab7d7e783129c98108357d2203ad635743f7c675ae1532f45e2c510",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-attestation-chain-verify",
+      "title": "SOP \u2014 Issuance Chain Verification and Anchoring",
+      "kind": "markdown",
+      "content_chars": 4531,
+      "content_sha256": "bc161f9ed2c47e585b6cd8bd24f2686f1b0da991386a088df4f184cd1c2e9f8e",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-attestation-key-mgmt",
+      "title": "SOP \u2014 Key Management and Signing Operations",
+      "kind": "markdown",
+      "content_chars": 4355,
+      "content_sha256": "9869c894ac0a12bb7a7f28cab6f227902c81cc533304427582429e8716d45732",
+      "asset": null,
+      "asset_carried": false
+    },
+    {
+      "id": "sop-attestation-backfill",
+      "title": "SOP \u2014 Backfill of Past Editions",
+      "kind": "markdown",
+      "content_chars": 4755,
+      "content_sha256": "b9143af48c39461c023d8f55ab963b7947650bfc40eddfbc953236b8a89a1a30",
+      "asset": null,
+      "asset_carried": false
     }
   ],
   "missing_assets": [],

@@ -26,9 +26,19 @@ wrangler secret put APP_PASSWORD
 
 ## Contents
 
-19 documents seeded from
-`~/workspace/your_files/muse-backup-2026-11-08/glenride-hq/data-snapshot-listlibrary.json`
-(see `scripts/seed-sha256.json` for the per-document sha256 manifest).
+28 documents seeded from two snapshots (merged by `scripts/seed.py`):
+
+- 19 documents from
+  `~/workspace/your_files/muse-backup-2026-11-08/glenride-hq/data-snapshot-listlibrary.json`
+  (the Nov 8, 2026 Muse backup snapshot).
+- 9 attestation SOP documents (operations binder, Nov 17, 2026) from the
+  repo-local `scripts/snapshot-sop-attestation-2026-11-17.json`, exported
+  byte-exact from the live library.
+
+See `scripts/seed-sha256.json` for the per-document sha256 manifest.
+When documents are added to the live library, add them to an additions
+snapshot in `scripts/` and list it in `seed.py`'s `ADDITIONS` — a re-seed
+deletes every document the snapshots do not contain.
 Two binary assets are stored in D1 and served auth-gated via
 `GET /api/assets/:id`:
 
@@ -43,7 +53,10 @@ Two binary assets are stored in D1 and served auth-gated via
 - `worker/src/index.js` — API (login, documents CRUD, search, assets)
 - `public/` — static SPA (login, binder filter, search, reader, editor)
 - `migrations/` — D1 schema (`hq_documents`, `hq_assets`, `hq_asset_chunks`)
-- `scripts/seed.py` — generates `seed.sql` + `seed-sha256.json` from the snapshot
+- `scripts/seed.py` — generates `seed.sql` + `seed-sha256.json` from the
+  Nov 8 snapshot plus the repo-local additions snapshots in `ADDITIONS`
+- `scripts/snapshot-sop-attestation-2026-11-17.json` — additions snapshot:
+  the 9 attestation SOP documents, exported byte-exact from live D1
 - `scripts/seed-large-asset.py` — generates chunked seed SQL for a large binary
 
 ## Re-seed (fresh database)

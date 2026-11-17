@@ -1,4 +1,4 @@
--- Glenride HQ seed — generated from the Muse backup snapshot.
+-- Glenride HQ seed — generated from the Muse backup snapshot + repo-local additions.
 -- Regenerate with: python3 scripts/seed.py [ --asset id=/path ... ]
 DELETE FROM hq_documents;
 DELETE FROM hq_assets;
@@ -2336,4 +2336,400 @@ The sequence holds: P6 depends on P3''s diagnosis (satisfied — P3 precedes P6)
 Three outline *annotations* are required before drafting (not structural changes): the P2 stat correction, the P3 biomedical scoping, and the P8 concentration-framing. Everything else in the cohesion review is drafting discipline, already specified above.
 
 One further note for the author: the single most credibility-bearing move in the entire series is the P2 correction — a founder publicly correcting his own number, on the record, in front of scientists. That beat should not be buried.
+', NULL, NULL, NULL);
+INSERT INTO hq_documents (id, title, binder, kind, status, summary, pinned, updated, last_opened, content, asset_id, asset_name, asset_mime) VALUES ('sop-attestation-index', 'Attestation SOP Series — Index', 'operations', 'markdown', 'v1.0', 'Index of the eight attestation operating procedures: automated issuance, button, holds, challenge, corrections, chain, keys, backfill.', 0, 'Nov 17, 2026', NULL, '# Attestation SOP Series — Index
+
+**Version:** 1.0 — November 17, 2026 · **Governs:** Glenride Digest Attestation Protocol v1.0, Attestation SOP v1.1, Automated Digest Attestation PRD (approved by D''Vaughn House''s tap, November 17, 2026). **Owner:** D''Vaughn House (human principal). **Issuer of record:** Glenride.
+
+**Human source.** Machines propose; humans are the source of all decisions. The human principal of every attestation is D''Vaughn House, principal of Glenride. The system prepares, checks, and executes signatures as his instrument under standing authorization. The system is never named as the attestor.
+
+**Nature.** These are internal operating procedures. They are not contractual agreements, they are not under clinical-study protocol review purview, and they claim no federal certification or endorsement.
+
+## The series
+
+| SOP | What it governs |
+|---|---|
+| SOP — Automated Monday Digest Attestation | The steady state: trigger, preparation, six gates, signing, publication, email, Mission Control log. No human step between release and issuance. |
+| SOP — One-Click Button Attestation | The human override: issuer sign-in, pre-filled queue row, Attest — same gates and signing code as the scheduled job. |
+| SOP — Held Items and the 3-Run Waiting Rule | What holds, how holds surface, what unblocks each gate, and the wait-on-a-human rule after 3 consecutive failed runs. |
+| SOP — Challenge and Revocation | Public challenge (any signed-in user, stated grounds), adjudication, outcomes, and issuer-only revocation. The control that makes automated signing safe. |
+| SOP — Corrections and Superseded Versions | Append-only history: correction by supersession only, never by editing. Retention of the full trail. |
+| SOP — Issuance Chain Verification and Anchoring | The hash-chained issuance log, the verify command and its cadence, what a break means, and what anchoring is (and is not) today. |
+| SOP — Key Management and Signing Operations | Signing-key custody, the shared signing code, and what is not defined in Protocol v1.0 (rotation, revocation, backup). |
+| SOP — Backfill of Past Editions | Eligibility (published Monday digests since October 19, 2026), the release-time hash rule, and the prohibition on re-recording a hash to cure an edit. |
+
+## How to use this series
+
+- Start with the automated Monday SOP for the steady state. Use the button SOP when a human must act. Use the held-items SOP whenever an edition does not issue. Use the challenge SOP whenever anyone disputes a record.
+- Technical detail (hash formulas, genesis values, entry contents, command names) lives in `ATTESTATION-PROTOCOL.md` in the thinktank-os repo. The protocol governs the code; if code and protocol disagree, the code is fixed to the protocol and the discrepancy is reported. A change to the protocol, the PRD, or Attestation SOP v1.1 is a change to all three — and to this series.
+- The research SOPs (SOP-001–SOP-004) in this same binder govern study work, not attestation. The fuller research set (SOP-001–SOP-010 + outline) lives in the thinktank-os repo under `resources/sops/`, served at `/sops`.
+
+## Currency note
+
+These SOPs describe the system as built and live on November 17, 2026 (Protocol v1.0, SOP v1.1, build commit `f942257`). A gap-closure build is in flight (asymmetric signatures, the attestation statement, trusted timestamping, independent anchoring, key-management procedures). When it lands, this series will be amended to describe the new behavior — no procedure in this series describes unbuilt behavior.
+', NULL, NULL, NULL);
+INSERT INTO hq_documents (id, title, binder, kind, status, summary, pinned, updated, last_opened, content, asset_id, asset_name, asset_mime) VALUES ('sop-attestation-auto-monday', 'SOP — Automated Monday Digest Attestation', 'operations', 'markdown', 'v1.0', 'Steady state: trigger, preparation, six gates, signing, publication, email, and Mission Control log. No human step between release and issuance.', 0, 'Nov 17, 2026', NULL, '# SOP — Automated Monday Digest Attestation
+
+**Version:** 1.0 — November 17, 2026 · **Governs:** Glenride Digest Attestation Protocol v1.0, Attestation SOP v1.1, Automated Digest Attestation PRD (approved November 17, 2026). **Owner:** D''Vaughn House (human principal). **Issuer of record:** Glenride. **Technical detail:** `ATTESTATION-PROTOCOL.md` in the thinktank-os repo — this SOP states the procedure; the protocol states the mechanics.
+
+**Human source.** Machines propose; humans are the source of all decisions. The human principal of every attestation is D''Vaughn House, principal of Glenride. The system prepares, checks, and executes signatures as his instrument under standing authorization (SOP v1.1 + his November 17, 2026 tap approving the PRD defaults). The system is never named as the attestor, in any record, log, email, or page.
+
+**Nature.** This is an internal operating procedure. It is not a contractual agreement, it is not under clinical-study protocol review purview, and it claims no federal certification or endorsement.
+
+## Purpose
+
+Every weekly drug-shortage digest is attested the same day it releases, with no human step in the steady state: preparation leads to signing automatically.
+
+## Roles
+
+- **Human principal** — D''Vaughn House. Source of every attestation decision; grants and holds the standing authorization; retains challenge and revocation.
+- **Issuer of record** — Glenride, acting through the human principal.
+- **Orchestrator account** — the Glenride orchestrator user account the system signs under. The instrument, not the decision-maker.
+- **System** — the scheduled job and the shared attestation code. Prepares rows, runs gates, executes signatures, publishes, logs, emails.
+- **Reader / auditor** — anyone. May read the registry, verify a signature, and recompute the issuance chain without an account.
+
+## Trigger
+
+The scheduled job runs daily at 10:00 AM Eastern on the iMac (Laravel scheduler + the `thinktank-scheduler` systemd user timer calling `schedule:run` every minute). It processes whatever digest rows are queued; it is a no-op when none are queued. Each edition is represented by a trigger row (a JSON file under `digest-attestation/queue/`), prepared from the digest run, carrying: edition date, subject title exactly as published, kind `report`, digest run figures (ASHP count, FDA in-shortage count, FDA total, retrieval date), canonical file path, recorded subject hash, public URL where the edition is public, whether the edition is public or a paid artifact, and whether it is released.
+
+## Steps
+
+1. **Prepare.** The claim is built from the fixed template, filled with the digest run''s figures — never free text, never invented: "Glenride''s weekly drug-shortage digest for `<date>`: ASHP tracked `<n>` live shortage bulletins and the FDA listed `<m>` of `<k>` database entries in shortage, retrieved and verified on `<date>`." If a required value is missing, preparation fails and the edition is held.
+2. **Run the six gates, in order.** All six must pass before any signature is computed. The first failure stops the run for that edition and holds it.
+   1. Finished + fixed: the edition is released and its canonical file exists on disk.
+   2. Checkable: the public URL returns HTTP 200 where the edition is public; a paid artifact satisfies this gate through its canonical file + hash.
+   3. Hash parity: the SHA-256 of the canonical file''s current bytes equals the recorded subject hash.
+   4. Claim fidelity: every figure in the claim matches the digest run''s figures exactly; the claim asserts nothing beyond them.
+   5. Identity: the title is exactly as published; the kind is `report`.
+   6. No duplicates: no existing attestation already covers the edition (same URL + hash, or same subject hash). A duplicate trigger is a no-op — no new attestation, no new sequence number.
+3. **Sign.** Using the shared attestation service (the same code as every other attestation): a public ID is generated (`GLR-AT-YYYY-XXXXXX`), the HMAC-SHA256 signature is computed over the canonical record, and the record is created with `entered_via = automated`, method `automated_digest_v1`, issuer Glenride, verifier the orchestrator account, status `issued`, the evidence record (including the human principal and the standing authorization), and the issue time. No TTOS credit debit is made for automated digest attestations. The signing key stays in the application environment on the iMac; it is never copied, printed, logged, or moved.
+4. **Append the issuance log entry** in the same database transaction (see the chain-verification SOP). If the attestation already existed, no log entry is appended.
+5. **Publish.** The attestation appears in the public registry at `/attestations`; its verify page recomputes the signature from the stored record; the run''s issuances and holds are logged to Mission Control (digest date, title, public ID, hash, gates, timestamp).
+6. **Email.** The system sends one run email to the human principal listing issued editions (title, date, figures, gates, public ID, registry and verify links, human principal, authorization) and held editions (URGENT subject with the failed gate, reason, and what unblocks it). Every payload is also written to the outbox file under `digest-attestation/outbox/`, whether or not delivery succeeds. As of November 17, 2026, no working mail configuration exists, so run payloads queue in the outbox until mail is configured; this never blocks issuance.
+7. **Verify (same session).** Open the public record (`/attestations/{public_id}`): status `issued`, signature verified, subject hash equal to the recorded hash.
+
+## Failure handling
+
+- Any gate failure holds the edition with the exact failed gate + reason, recorded in the state file and audit record and reported in the run email. A held edition is never signed. See the held-items SOP for the 3-run waiting rule and unblocking.
+- A mail failure never rolls back an issuance: issuances stand, holds stand, the payload sits in the outbox.
+
+## Records produced
+
+Attestation row (`attestations`); issuance log entry (`attestation_issuance_log`); queue row; canonical file; held state (`digest-attestation/state.json`); audit record (`digest-attestation/audit.jsonl`); email outbox payload; scheduler log; Mission Control activity entry.
+', NULL, NULL, NULL);
+INSERT INTO hq_documents (id, title, binder, kind, status, summary, pinned, updated, last_opened, content, asset_id, asset_name, asset_mime) VALUES ('sop-attestation-button', 'SOP — One-Click Button Attestation', 'operations', 'markdown', 'v1.0', 'Human override: issuer sign-in, pre-filled queue row, Attest — the same gates and signing code as the scheduled job.', 0, 'Nov 17, 2026', NULL, '# SOP — One-Click Button Attestation
+
+**Version:** 1.0 — November 17, 2026 · **Governs:** Glenride Digest Attestation Protocol v1.0 (§12), Attestation SOP v1.1, Automated Digest Attestation PRD §12 (approved November 17, 2026). **Owner:** D''Vaughn House (human principal). **Issuer of record:** Glenride. **Technical detail:** `ATTESTATION-PROTOCOL.md` in the thinktank-os repo.
+
+**Human source.** Machines propose; humans are the source of all decisions. The human principal of every attestation is D''Vaughn House, principal of Glenride. The button is the human override and fallback control: a signed-in issuer presses Attest, and the system runs the same gates and signing code as the scheduled job. The system is never named as the attestor.
+
+**Nature.** This is an internal operating procedure. It is not a contractual agreement, it is not under clinical-study protocol review purview, and it claims no federal certification or endorsement.
+
+## Purpose
+
+Any queued digest edition can be attested by hand in one click — login, open the digest, Attest — with everything pre-filled, the same gates, and no form-filling. The button exists for backfill, ad-hoc digests, and any week the automation is held. It is not the steady-state path: steady state signs automatically after preparation.
+
+## Roles
+
+- **Issuer (button)** — a signed-in Glenride editor or orchestrator. May press Attest on a queued row.
+- **Human principal** — D''Vaughn House. Source of the attestation decision; retains challenge and revocation.
+- **System** — runs the same preparation, gates, and signing code as the scheduled job. There is no second implementation.
+
+## Trigger
+
+An issuer signs in to ThinkTank OS and opens the digest queue page at `/attestations/digest-queue` (issuer login required; signed-out visitors are sent to login). Use it when an edition needs a human touch: a backfill edition, an ad-hoc digest, or a held week being re-run after its gate is fixed.
+
+## Steps
+
+1. **Sign in** as an issuer (orchestrator, admin, or editor account).
+2. **Open the digest queue.** Queued editions are listed pre-filled: title, claim, evidence, URL, and hash, with one Attest button per row.
+3. **Review the row.** Confirm the title is exactly as published, the kind is `report`, and the claim, evidence, URL, and hash match the released edition. Do not edit figures by hand — if a figure is wrong, fix the digest run and the row, not the claim text.
+4. **Press Attest.** The six gates run exactly as in the automated path (see the automated Monday SOP). If all pass, the edition signs immediately and the page shows the issued record. If any gate fails, the row holds with the reason shown — the button never signs past a failed gate, and it never asks the issuer to fill a form.
+5. **Verify (same session).** Open the public record (`/attestations/{public_id}`): status `issued`, signature verified, subject hash equal to the recorded hash.
+
+## Failure handling
+
+- A gate failure holds the row with the exact failed gate + reason shown on the page, recorded in the state file and audit record. Fix the failed gate (see the held-items SOP), then press Attest again.
+- A row waiting under the 3-run rule shows its waiting state; a human re-run from the button is an explicit human act and is not skipped.
+- A duplicate trigger is a no-op: the existing public ID is reported, no second attestation is created.
+
+## Scope boundary
+
+The button attests digest `report` subjects only. Other standalone subjects (dataset, external_work, other) and manuscript-pipeline subjects keep the SOP v1.0 rule: a human issuer signs through the manual-entry route, and a second set of eyes signs — an author never attests their own work by self-signing. Automation does not spread to other subject classes without its own amendment.
+
+## Records produced
+
+Same as the automated path: attestation row with `entered_via = automated` (the button shares the scheduled path''s code and method), issuance log entry, audit record, state update, Mission Control log entry on the next run report.
+', NULL, NULL, NULL);
+INSERT INTO hq_documents (id, title, binder, kind, status, summary, pinned, updated, last_opened, content, asset_id, asset_name, asset_mime) VALUES ('sop-attestation-held-items', 'SOP — Held Items and the 3-Run Waiting Rule', 'operations', 'markdown', 'v1.0', 'What holds an edition, how holds surface, what unblocks each gate, and the wait-on-a-human rule after 3 failed runs.', 0, 'Nov 17, 2026', NULL, '# SOP — Held Items and the 3-Run Waiting Rule
+
+**Version:** 1.0 — November 17, 2026 · **Governs:** Glenride Digest Attestation Protocol v1.0 (§6, §9), Attestation SOP v1.1 (§10), Automated Digest Attestation PRD §6.6 (approved November 17, 2026). **Owner:** D''Vaughn House (human principal). **Issuer of record:** Glenride. **Technical detail:** `ATTESTATION-PROTOCOL.md` in the thinktank-os repo.
+
+**Human source.** Machines propose; humans are the source of all decisions. Holds are the system''s way of refusing to sign what it cannot verify; unblocking a held edition is a human decision about facts, never an override of a check. The human principal is D''Vaughn House, principal of Glenride.
+
+**Nature.** This is an internal operating procedure. It is not a contractual agreement, it is not under clinical-study protocol review purview, and it claims no federal certification or endorsement.
+
+## Purpose
+
+A digest edition that fails any gate is held — recorded, visible, and never signed — until the failure is fixed. Nothing is silently skipped, nothing is partially issued, and nothing is forced past a failed gate.
+
+## What holds an edition
+
+Any failure of the six gates (see the automated Monday SOP): the edition is not released or its canonical file is missing (gate 1); the public URL does not return 200 and the edition is not a correctly recorded paid artifact (gate 2); the file''s SHA-256 does not equal the recorded subject hash (gate 3); a claim figure does not match the digest run (gate 4); the title or kind is wrong (gate 5). A missing figure, file, or URL holds the edition — it is never filled in or skipped. A duplicate trigger is NOT a hold: it is a no-op, and the existing public ID is reported.
+
+## How a hold is recorded and surfaced
+
+- The hold records the edition, the failed gate number, the exact reason, and the run time, written to the held-state file (`digest-attestation/state.json`) and the audit record (`digest-attestation/audit.jsonl`).
+- The run email reports the hold with an URGENT subject naming the exact failed gate, the reason, and what unblocks it. The payload is also written to the outbox file whether or not delivery succeeds.
+- The hold is logged to Mission Control with the run''s results.
+- Held editions stay visible in the queue, in the audit record, and in the email until resolved. A held edition gets no sequence number in the issuance log: it was never issued.
+
+## What unblocks each gate
+
+1. **Gate 1** — the edition is published and its canonical file is stored under `digest-attestation/files/`.
+2. **Gate 2** — the public page is live (HTTP 200), or the edition is correctly recorded as a paid artifact with file and hash.
+3. **Gate 3** — a canonical file whose bytes match a hash recorded at release time. A post-publication edit can never be cured by re-recording the hash; the release-time hash is the record. See the backfill SOP for the prohibition on re-recording.
+4. **Gate 4** — the digest run figures and the recorded claim are corrected to agree.
+5. **Gate 5** — the row carries the published title verbatim and kind `report`.
+6. **Gate 6** — no unblocking applies: a duplicate means the edition is already attested; use the existing public ID.
+
+## The 3-run waiting rule
+
+1. Each failed run for an edition increments its consecutive-failure count. A successful issuance clears the count.
+2. After 3 consecutive failed runs, the edition waits on a human: later scheduled runs skip it and report it as waiting, until a human re-runs it explicitly with the force option or fixes the failed gate.
+3. The wait is a pause, not a deletion: the row stays queued, the hold reason stands, and the edition remains visible in the queue, the audit record, and the email.
+
+## What never happens
+
+- Never sign past a failed gate, by schedule or by button.
+- Never re-record a hash to cure a post-publication edit.
+- Never delete a held row, a hold record, or an audit line to hide a failure.
+- Never partially issue: an edition is issued whole or not at all.
+
+## Records produced
+
+Held-state file, audit record lines, outbox email payloads, Mission Control log entries. A resolved hold leaves the full trail: the hold reasons, the fix, and the eventual issuance.
+', NULL, NULL, NULL);
+INSERT INTO hq_documents (id, title, binder, kind, status, summary, pinned, updated, last_opened, content, asset_id, asset_name, asset_mime) VALUES ('sop-attestation-challenge-revoke', 'SOP — Challenge and Revocation', 'operations', 'markdown', 'v1.0', 'Public challenge by any signed-in user with stated grounds, adjudication, outcomes, and issuer-only revocation.', 0, 'Nov 17, 2026', NULL, '# SOP — Challenge and Revocation
+
+**Version:** 1.0 — November 17, 2026 · **Governs:** Glenride Digest Attestation Protocol v1.0 (§2, §13), Attestation SOP v1.1, Challenge SOP v1.0 (2026-10-24). **Owner:** D''Vaughn House (human principal). **Issuer of record:** Glenride. **Technical detail:** `ATTESTATION-PROTOCOL.md` in the thinktank-os repo; challenge/revocation routes in `AttestationController`.
+
+**Human source.** Machines propose; humans are the source of all decisions. Challenge and revocation are human acts, retained by the human. The system never challenges or revokes on its own. Issuance may be automatic; reversal is always available to a human. That control is what makes automated signing safe.
+
+**Nature.** This is an internal operating procedure. It is not a contractual agreement, it is not under clinical-study protocol review purview, and it claims no federal certification or endorsement.
+
+## Purpose
+
+Any attestation — automated or not — can be challenged in public and revoked by an issuer. An attestation authority that cannot be challenged is just a priesthood; challenges are public by design.
+
+## Challenge
+
+### Who and how
+
+- **Who:** any signed-in ThinkTank OS user (Fellow). Anonymous challenges are not supported. Glenride issuers may challenge like anyone else; issuer power enters at adjudication, not at filing.
+- **How:** file a challenge on the attestation''s record page (`POST /attestations/{attestation}/challenges`), active records only (status `issued` or already `challenged`). Grounds are required, minimum 10 characters.
+- **Effect:** filing flips the status from `issued` to `challenged` immediately and in public — the registry, the record page, and the Library seal all show it. The underlying work is not unpublished and the record is not altered; the challenge attaches to it as an open challenge row (challenger, grounds, timestamps). There is no pre-screening and no silent queue: visibility is the mechanism.
+
+### Grounds and evidence standard
+
+Grounds should name one of: **wrong subject** (record hash does not match the work — evidence: the challenger''s own SHA-256 of the canonical artifact); **false or overstated claim** (claim asserts more than the evidence manifest supports — evidence: quote the claim, cite what the manifest shows); **evidence failure** (cited evidence missing, unreachable, or not saying what the record relies on); **provenance defect** (misattribution, predating, or not the author''s/publisher''s to record); **process defect** (an issuance gate was not met). Vague disagreement without a checkable assertion does not meet the standard and is resolved as dismissed with a note saying so. The strongest challenges are reproducible: a hash, a link, a quote.
+
+### Adjudication
+
+- **Adjudicator:** an issuer (orchestrator, admin, or editor) who is not the original verifier of the challenged record, where a second issuer exists. While Glenride has a sole issuer, the challenge and its resolution are reviewed against this SOP in the open and the conflict is noted on the resolution.
+- **Path:** (1) reproduce the challenge''s check (hash, link, quote) against the record and the canonical artifact; (2) give the original verifier''s evidence manifest the same check; (3) decide on the reproduced facts, not on reputation; (4) record the outcome with a resolution note.
+- **Timeline:** acknowledge (first adjudicator touch) within 2 business days; resolve within 10 business days of filing. If resolution needs evidence only a third party holds, the challenge stays open, and the delay and the missing item are noted on the record.
+
+### Outcomes
+
+- **Dismissed** (challenge does not meet the standard, or its check fails): the challenge row is marked dismissed with a resolution note; the attestation returns to `issued`. The dismissed challenge remains listed on the public record — it is part of the record''s history, not deleted.
+- **Upheld — claim amended by supersession:** records are append-only, so an upheld challenge never edits the original. The original is revoked (reason citing the upheld challenge) and, where the work itself stands, a new attestation is issued bound to the corrected claim/evidence (new public ID; its evidence manifest cites the revoked record and the challenge). The public trail reads: issued → challenged → revoked → superseded. See the corrections SOP.
+- **Upheld — record revoked:** the issuer revokes with a recorded reason and timestamp. Status `revoked` is permanent and public; the record, its challenges, and the revocation reason stay in the registry.
+
+## Revocation
+
+- **Who:** Glenride editors and orchestrators only (`canIssueAttestations()`). Others receive a 403.
+- **How:** `POST /attestations/{attestation}/revoke`, active records only, with a stated reason (3–255 characters). The record is marked `revoked` with the revocation time and reason.
+- **Effect:** revocation is a status, not an erasure. The record, its challenges, and the revocation reason stay public, and the issuance log entry is kept (see the chain-verification SOP). Revoked records are never deleted to hide them.
+- **Digest credit note:** automated digest attestations carry no TTOS debit, so revoking one has no credit consequence. (The 75-TTOS credit consequence in the Challenge SOP applies only to pipeline attestations that were debited, under the credits refund policy, executed manually by an orchestrator — never automatic.)
+
+## What a challenge is not
+
+Not a comment thread (one filing per user per attestation; discussion belongs elsewhere). Not a takedown of the underlying work (publication records stand or fall by their own process; a challenge rules on the attestation). Not anonymous, not private, and not deletable by the challenger after filing — filing is itself a public act, symmetric with attesting.
+
+## Records produced
+
+Challenge rows (challenger, grounds, status, timestamps, resolution notes); attestation status history; revocation reason and time; the unchanged issuance log entry.
+', NULL, NULL, NULL);
+INSERT INTO hq_documents (id, title, binder, kind, status, summary, pinned, updated, last_opened, content, asset_id, asset_name, asset_mime) VALUES ('sop-attestation-corrections', 'SOP — Corrections and Superseded Versions', 'operations', 'markdown', 'v1.0', 'Append-only history: correction by supersession only, never by editing. Retention of the full trail.', 0, 'Nov 17, 2026', NULL, '# SOP — Corrections and Superseded Versions
+
+**Version:** 1.0 — November 17, 2026 · **Governs:** Glenride Digest Attestation Protocol v1.0 (§10.4), Attestation SOP v1.1 (§5, §9), Challenge SOP v1.0 (§6). **Owner:** D''Vaughn House (human principal). **Issuer of record:** Glenride. **Technical detail:** `ATTESTATION-PROTOCOL.md` in the thinktank-os repo.
+
+**Human source.** Machines propose; humans are the source of all decisions. Corrections are human decisions recorded in public: the system appends history, it never rewrites it. The human principal is D''Vaughn House, principal of Glenride.
+
+**Nature.** This is an internal operating procedure. It is not a contractual agreement, it is not under clinical-study protocol review purview, and it claims no federal certification or endorsement.
+
+## Purpose
+
+Attestation records are append-only. A mistake is corrected by adding a new record that supersedes the old one — never by editing, overwriting, or deleting the old one. The full history stays readable: what was issued, what was challenged, what was revoked, and what replaced it.
+
+## The append-only rule
+
+- An issued attestation''s claim, evidence manifest, signature, and status history are never edited after issuance.
+- A dismissed challenge stays listed on the public record. A revoked attestation stays in the registry with its revocation reason and time.
+- Issuance log entries are never edited or deleted. A revoked attestation keeps its entry; revocation is recorded on the attestation itself, not by removing history.
+- Audit lines, hold records, and outbox payloads are never deleted to hide a failure.
+
+## Correction by supersession (the only correction path)
+
+1. **Establish the defect.** A challenge is upheld through the adjudication in the challenge-and-revocation SOP, or an issuer identifies a defect in a record (wrong claim, wrong evidence, wrong subject binding) and records the finding with the same reproducibility standard: a hash, a link, or a quote.
+2. **Revoke the original.** The issuer revokes the original attestation with a reason citing the upheld challenge or the identified defect. Status becomes `revoked`, permanently and publicly, with the revocation time and reason.
+3. **Issue the replacement (where the work itself stands).** A new attestation is issued bound to the corrected claim and evidence, through the normal path for its subject class (automated gates for digest reports; human issuer for all other classes). It receives a new public ID. Its evidence manifest cites the revoked record and the challenge or defect finding.
+4. **Read the trail.** The public trail reads: issued → challenged → revoked → superseded. The original record is never edited, so no forward pointer is added to it; the linkage is read through the replacement record''s evidence manifest and the challenge row.
+
+## Changed subjects
+
+A changed subject (a new subject hash) earns a new attestation; the old record is never edited. Re-submitting an unchanged subject is safe: an active attestation for the same subject hash is returned instead of duplicated (idempotency). A subject whose canonical file changed after publication is a new subject only if a release-time hash exists for the new bytes — otherwise the edition stays held (see the backfill SOP). Never re-record a hash to make an edited file look like the published one.
+
+## Retention
+
+- Attestation records, challenge rows, and issuance log entries are retained permanently in the registry and the database.
+- Pipeline subjects additionally keep their versioned SpinWave record chain (the permanent store of record).
+- The audit trail for any issuance is: the attestation record itself, the issuance log entry, the TTOS ledger entry where a debit applies (pipeline attestations only), the run audit record, and the workspace audit log for issuance batches.
+
+## Records produced
+
+The revoked original (unchanged, with revocation reason and time); the replacement attestation (new public ID, manifest citing the original); the challenge row and resolution note; the unchanged issuance log entries for both records.
+', NULL, NULL, NULL);
+INSERT INTO hq_documents (id, title, binder, kind, status, summary, pinned, updated, last_opened, content, asset_id, asset_name, asset_mime) VALUES ('sop-attestation-chain-verify', 'SOP — Issuance Chain Verification and Anchoring', 'operations', 'markdown', 'v1.0', 'The hash-chained issuance log, the verify command and its cadence, what a break means, and what anchoring is today.', 0, 'Nov 17, 2026', NULL, '# SOP — Issuance Chain Verification and Anchoring
+
+**Version:** 1.0 — November 17, 2026 · **Governs:** Glenride Digest Attestation Protocol v1.0 (§10, §14), Attestation SOP v1.1 (§8). **Owner:** D''Vaughn House (human principal). **Issuer of record:** Glenride. **Technical detail:** `ATTESTATION-PROTOCOL.md` §10 (entry contents, hash formula, genesis values); `VerifyIssuanceChain` command in the thinktank-os repo.
+
+**Human source.** Machines propose; humans are the source of all decisions. The chain is the machine-readable proof that history was not rewritten; reading it and acting on a break are human responsibilities. The human principal is D''Vaughn House, principal of Glenride.
+
+**Nature.** This is an internal operating procedure. It is not a contractual agreement, it is not under clinical-study protocol review purview, and it claims no federal certification or endorsement.
+
+## Purpose
+
+Every issued attestation gets the next sequence number in an append-only, hash-linked log, so any alteration, deletion, or reordering is detectable by recomputation. This SOP states how the chain is verified, what a break means, and what anchoring is — and is not — today.
+
+## The chain (what exists)
+
+- Each entry records: sequence number (`seq`, monotonic and gap-free from genesis 0), previous entry hash, public ID, subject hash, gates passed, issue time (ISO 8601), human principal, standing authorization, and the entry hash (SHA-256 over the canonical form of the fields above).
+- The chain begins with an explicit genesis entry (sequence 0, previous hash 64 zeros, public ID `GENESIS`, defined seed values). Genesis is not an issuance.
+- A duplicate trigger creates no new sequence number. A held edition gets no sequence number: it was never issued. Entries are never edited or deleted; a revoked attestation keeps its entry.
+
+## Verification
+
+- **Command:** `attestations:verify-chain` (run in the ThinkTank OS application container on the iMac). It recomputes the whole chain from genesis and reports: whether the sequence runs 0, 1, 2, … with no gaps; whether every entry''s previous hash equals the previous entry''s hash; whether every entry hash matches a recomputation from its stored fields; whether the genesis entry matches the defined genesis values; and whether every non-genesis entry names an attestation that exists.
+- **Cadence:** run the verify command after every scheduled run that issues an attestation, and before relying on the chain for any funder-facing statement. Run it on demand whenever the log is questioned. An empty log verifies as valid and empty.
+- **Pass:** the command exits zero and reports the chain valid. Record the verification (date, entry count, result) in the run''s audit trail.
+- **Break:** any failure is reported by sequence number with the exact mismatch, and the command exits non-zero. A break means: stop. Do not issue further attestations on the strength of the chain, do not edit or delete log entries, and escalate to the human principal with the exact mismatch. A break is never fixed by editing the log. Any remedy requires a protocol amendment approved by the human principal.
+
+## Anchoring (what exists today)
+
+- **No automatic on-chain anchoring exists in Protocol v1.0.** No attestation is anchored on-chain by the scheduled job or the button.
+- **Anchor recording exists** as a separate, manual, separately authorized act: ThinkTank OS records anchors; it does not send transactions. The record-anchor path is issuers-only and validates the transaction hash, contract, and chain (`base` / `base-sepolia`). Anchoring is hash-only — only the subject hash ever anchors, never content. Until an anchor is recorded, the public page honestly reads "Not anchored."
+- **Gates (standing decisions, unchanged):** the Base Sepolia anchor test is deferred by the human principal''s decision — no Sepolia deploy under the current approval. Mainnet anchoring requires a third-party audit and the standing gate (25 live attestations / first external study). The on-chain issuer, when mainnet anchoring happens, is the STANZA treasury Safe.
+- **Independent preservation beyond the chain is not built in Protocol v1.0.** Do not describe the chain as independently preserved or externally anchored until a preservation mechanism is built and this SOP is amended to describe it.
+
+## Records produced
+
+Verify-command output (date, entry count, result, any mismatches by sequence number); anchor records on attestations (transaction hash, contract, chain) when an anchor is recorded.
+', NULL, NULL, NULL);
+INSERT INTO hq_documents (id, title, binder, kind, status, summary, pinned, updated, last_opened, content, asset_id, asset_name, asset_mime) VALUES ('sop-attestation-key-mgmt', 'SOP — Key Management and Signing Operations', 'operations', 'markdown', 'v1.0', 'Signing-key custody, the shared signing code, and what Protocol v1.0 does not define: rotation, revocation, backup.', 0, 'Nov 17, 2026', NULL, '# SOP — Key Management and Signing Operations
+
+**Version:** 1.0 — November 17, 2026 · **Governs:** Glenride Digest Attestation Protocol v1.0 (§2, §7, §14), Attestation SOP v1.1 (§5, §10), Automated Digest Attestation PRD §6.4 (approved November 17, 2026). **Owner:** D''Vaughn House (human principal). **Issuer of record:** Glenride. **Technical detail:** `ATTESTATION-PROTOCOL.md` in the thinktank-os repo; signing code in `AttestationService`.
+
+**Human source.** Machines propose; humans are the source of all decisions. The signing key is the instrument that executes the human principal''s decisions; custody of it is a human responsibility. The human principal is D''Vaughn House, principal of Glenride.
+
+**Nature.** This is an internal operating procedure. It is not a contractual agreement, it is not under clinical-study protocol review purview, and it claims no federal certification or endorsement.
+
+## Purpose
+
+One signing key seals every attestation. This SOP states where it lives, who (and what) may use it, and what is not defined — so nobody improvises custody, rotation, or recovery.
+
+## Custody (what exists)
+
+- The signing key lives **only** in the ThinkTank OS application environment on the iMac. The automation runs where the key lives.
+- The key is **never** copied, printed, logged, committed, emailed, chatted, or moved. It never appears in a cron body, a timer definition, a log file, an outbox payload, a Mission Control entry, or a chat message.
+- Routine operations never require any person to view, copy, or move the key value. No key value appears in this SOP, in any SOP, or in any attestation record.
+- No Sepolia or mainnet key is part of this procedure. Testnet and mainnet keys, if ever created, are separate keys under separate authorization — never the attestation signing key reused elsewhere.
+
+## Signing operations
+
+- All signing goes through the shared attestation service (`AttestationService`) — the scheduled path, the button path, and the manual path all call the same signing code. There is no second implementation and no hand-signing path.
+- The signature is HMAC-SHA256 over the canonical record (public ID, subject type and ID, subject hash, issue time). Verification is recomputation from the public record: anyone with the record can recompute the seal, and a mismatch proves alteration.
+- Signing happens only after all applicable gates pass (six gates for automated digest attestations; the SOP §4 intake checklist for human-issued subjects). Nothing signs past a failed check.
+- The key is used only by the application environment to execute signatures under the human principal''s standing authorization (automated digest reports) or a human issuer''s direct action (all other subjects).
+
+## What is NOT defined in Protocol v1.0
+
+State this plainly rather than improvising:
+
+- **No rotation schedule exists.** No procedure defines when or how the key is rotated. Do not rotate the key without a protocol amendment approved by the human principal, including a plan for existing records: signatures verify against the key that signed them, so rotating without retaining the signing key would break verification of records signed under it.
+- **No key-revocation procedure exists.** There is no defined process for retiring a compromised key.
+- **No key-backup procedure exists.** There is no defined backup, escrow, or recovery path for the key.
+- **No hardware or validated-module claim is made.** The key lives in the application environment as described above; no stronger custody claim is stated anywhere.
+
+## Suspected exposure
+
+If the key is suspected exposed (appearing in a log, a file, a message, or any place outside the application environment):
+
+1. Stop issuance: do not sign further attestations until the human principal decides.
+2. Escalate to the human principal immediately with exactly what was seen and where.
+3. Do not delete anything: preserve the evidence (the log, file, or message) for review.
+4. Do not rotate, replace, or "fix" the key on your own: any remedy requires a protocol amendment approved by the human principal.
+
+## Records produced
+
+No key material is ever recorded. What is recorded: the fact of each signing (public ID, method, issue time) in the attestation record and issuance log entry; any exposure report and the human principal''s decision, in the audit trail.
+', NULL, NULL, NULL);
+INSERT INTO hq_documents (id, title, binder, kind, status, summary, pinned, updated, last_opened, content, asset_id, asset_name, asset_mime) VALUES ('sop-attestation-backfill', 'SOP — Backfill of Past Editions', 'operations', 'markdown', 'v1.0', 'Eligibility for past Monday digests, the release-time hash rule, and the prohibition on re-recording a hash to cure an edit.', 0, 'Nov 17, 2026', NULL, '# SOP — Backfill of Past Editions
+
+**Version:** 1.0 — November 17, 2026 · **Governs:** Glenride Digest Attestation Protocol v1.0 (§4–§6), Attestation SOP v1.1 (§10), Automated Digest Attestation PRD §8 Phase 0 + §9.1 (approved November 17, 2026). **Owner:** D''Vaughn House (human principal). **Issuer of record:** Glenride. **Technical detail:** `ATTESTATION-PROTOCOL.md` in the thinktank-os repo; load-package pattern in the October 24, 2026 load package.
+
+**Human source.** Machines propose; humans are the source of all decisions. Backfill applies the same gates as steady state; no edition is attested on weaker evidence because it is old. The human principal is D''Vaughn House, principal of Glenride.
+
+**Nature.** This is an internal operating procedure. It is not a contractual agreement, it is not under clinical-study protocol review purview, and it claims no federal certification or endorsement.
+
+## Purpose
+
+Published-but-unattested Monday digests are attested under the same gates, signing, and records as steady state — starting with the staged October 19 edition. A backfilled item that fails a gate is held with its reason, not forced through.
+
+## Eligibility
+
+- **Range (decided November 17, 2026):** every published Monday digest since October 19, 2026 that has a canonical file + URL. Anything without both is held, not skipped.
+- **Attested artifact:** the full paid digest. Its canonical file + hash satisfy checkability without a public URL; the public summary is not attested as a second artifact under the current approval.
+- **Row pattern:** each backfill edition follows the October 24 load-package template — title exactly as published, kind `report`, claim from the PRD §6.2 template filled with the digest run''s figures, evidence naming the source system + URL, canonical file on disk, and `subject_hash_override` = the SHA-256 of the canonical file recorded at release time.
+
+## Procedure
+
+1. **Stage the row.** Build the trigger row from the digest run itself (figures, retrieval date, exact title, canonical file path, recorded hash, URL where public, released flag). Never free text, never invented.
+2. **Run the same six gates** as steady state, in order (see the automated Monday SOP). Backfill uses the identical preparation, gates, and signing code — no separate backfill path.
+3. **Issue or hold.** All gates pass → sign, append the issuance log entry, publish, log to Mission Control, email. Any gate fails → hold with the exact failed gate + reason, visible in the queue, audit record, and email, under the 3-run waiting rule (see the held-items SOP).
+4. **Record the run.** The backfill run''s issuances and holds are logged to Mission Control as one run entry (edition, public ID or hold reason, hash, gates, timestamp).
+
+## The hash-parity rule (absolute)
+
+The recorded hash must be the SHA-256 of the canonical file''s bytes **recorded at release time**. A file edited after publication fails gate 3, because the attestation would bind to content that is no longer the published content.
+
+**A post-publication edit can never be cured by re-recording the hash.** Recomputing the hash of an edited file and recording it as the release-time hash, in order to force issuance, is prohibited — it would make the attestation claim the edited bytes are the published bytes. The release-time hash is the record. If no release-time hash can be recovered from the published bytes, the edition stays held permanently; it is never issued on a re-recorded hash.
+
+## Held reasons (worked examples, November 17 backfill run)
+
+- **Gate 1 — not released:** an edition that was drafted, slid, or banked but never published (November 2, 9, and 16 editions: drafts with no publication). Unblocks only by actual publication + a stored canonical file + re-grounding the row.
+- **Gate 3 — hash parity unprovable:** a file edited after publish with no release-time hash on record (October 26 edition). Unblocks only by a hash recorded at release time from the published bytes. Re-recording the current edited file''s hash is prohibited (above).
+- **Other gates:** unblock per the gate''s stated cure in the held-items SOP.
+
+## What never happens
+
+- Never attest an edition on weaker evidence because it is old.
+- Never re-record a hash to cure an edit.
+- Never skip a held edition silently: held means recorded with a reason, visible until resolved or permanently held.
+- Never backfill an edition that was never published: nothing is attested pre-publish.
+
+## Records produced
+
+Same as steady state: attestation rows, issuance log entries, state file, audit record, outbox payloads, Mission Control backfill-run entry. The October 19, 2026 edition was the first backfill issuance (public ID `GLR-AT-2026-O1AAJD`, issued November 17, 2026).
 ', NULL, NULL, NULL);

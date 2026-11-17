@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
-"""Seed Glenride HQ D1 from the Muse backup snapshot.
+"""Seed Glenride HQ D1 from the Muse backup snapshot plus later additions.
 
 Reads ~/workspace/your_files/muse-backup-2026-11-08/glenride-hq/data-snapshot-listlibrary.json
-and emits:
+(the Nov 8, 2026 snapshot, 19 documents) and merges the repo-local
+additions snapshot(s) listed in ADDITIONS (documents added to the live
+library after Nov 8). Emits:
   - seed.sql  (INSERTs into hq_documents / hq_assets, SQL-escaped)
   - seed-sha256.json (sha256 of each document's seeded content, for verification)
+
+Every document in the live library MUST appear in exactly one snapshot
+file, or a re-seed will delete it (seed.sql starts with DELETE FROM).
+When documents are added to the live library, add them to an additions
+snapshot in scripts/ and list the file in ADDITIONS below — never edit
+seed.sql by hand; it is generated.
 
 Binary assets: pass --asset <doc-id>=<path> to embed a file as base64 in
 hq_assets and link it from the document row. If no --asset is given for a
@@ -20,6 +28,11 @@ SNAPSHOT = os.path.expanduser(
     "~/workspace/your_files/muse-backup-2026-11-08/glenride-hq/data-snapshot-listlibrary.json")
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(OUT_DIR)
+# Repo-local additions snapshots, merged after the Nov 8 snapshot in
+# listed order. Each file has the same {"documents": [...]} shape.
+ADDITIONS = [
+    os.path.join(OUT_DIR, "snapshot-sop-attestation-2026-11-17.json"),
+]
 
 
 def sql_str(v):
@@ -41,8 +54,18 @@ def main():
     with open(SNAPSHOT, encoding="utf-8") as f:
         data = json.load(f)
     docs = data["documents"]
+    seen = {d["id"] for d in docs}
+    for path in ADDITIONS:
+        with open(path, encoding="utf-8") as f:
+            extra = json.load(f)
+        for d in extra["documents"]:
+            if d["id"] in seen:
+                print(f"duplicate document id {d['id']} in {path}", file=sys.stderr)
+                return 1
+            seen.add(d["id"])
+            docs.append(d)
 
-    lines = ["-- Glenride HQ seed — generated from the Muse backup snapshot.",
+    lines = ["-- Glenride HQ seed — generated from the Muse backup snapshot + repo-local additions.",
              "-- Regenerate with: python3 scripts/seed.py [ --asset id=/path ... ]",
              "DELETE FROM hq_documents;",
              "DELETE FROM hq_assets;"]
